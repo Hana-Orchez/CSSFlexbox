@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+  <div class="keys">
+    <div data-key="82" class="key">
+      <kbd>R</kbd>
+      <span class="sound">Rosetta Thorpe "This Train"</span>
+    </div>
+    <div data-key="51" class="key">
+      <kbd>3</kbd>
+      <span class="sound">Ruth Fernandez "Yo Soy que la Soy"</span>
+    </div>
+    <div data-key="52" class="key">
+      <kbd>4</kbd>
+      <span class="sound">Billie Holiday "Solitude"</span>
+    </div>
+    <div data-key="53" class="key">
+      <kbd>5</kbd>
+      <span class="sound">Celia Cruz "Azucar Negra"</span>
+    </div>
+    <div data-key="78" class="key">
+      <kbd>N</kbd>
+      <span class="sound">Nina Simone</span>
+    </div>
+    <div data-key="55" class="key">
+      <kbd>7</kbd>
+      <span class="sound">La Lupe "Manana"</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">Diana Ross "Upside Down"</span>
+    </div>
+    <div data-key="73" class="key">
+      <kbd>I</kbd>
+      <span class="sound">Irene Cara "What a Feeling"</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">Sade "No Ordinary Love"</span>
+    </div>
+    <div data-key="87" class="key">
+      <kbd>W</kbd>
+      <span class="sound">Whitney Houston "Always Love You"</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">Janet Jackson "The way love goes"</span>
+    </div>
+    <div data-key="66" class="key">
+      <kbd>B</kbd>
+      <span class="sound">Beyonce "Formation" </span>
+    </div>
+    <div data-key="67" class="key">
+      <kbd>C</kbd>
+      <span class="sound">Cardi B "Up" </span>
+    </div>
+    <div data-key="49" class="key">
+      <kbd>1</kbd>
+      <span class="sound">Megan The Stallion "Her" </span>
+    </div>
+    <div data-key="50" class="key">
+      <kbd>2</kbd>
+      <span class="sound">Glorilla "Blessed" </span>
+    </div>
+  </div>
+
+  <audio data-key="82" src="sounds/Rosetta (2).wav"></audio>
+  <audio data-key="51" src="sounds/Ruth.wav"></audio>
+  <audio data-key="52" src="sounds/BillieSolitude.wav"></audio>
+  <audio data-key="53" src="sounds/Celia.wav"></audio>
+  <audio data-key="78" src="sounds/Nina.wav"></audio>
+  <audio data-key="69" src="sounds/La Lupe.wav"></audio>
+  <audio data-key="68" src="sounds/Diana.wav"></audio>
+  <audio data-key="73" src="sounds/Irene.wav"></audio>
+  <audio data-key="83" src="sounds/Sade.wav"></audio>
+  <audio data-key="87" src="sounds/Whitney.wav"></audio>
+  <audio data-key="74" src="sounds/Janet.wav"></audio>
+  <audio data-key="66" src="sounds/Beyonce.wav"></audio>
+  <audio data-key="67" src="sounds/Cardi.wav"></audio>
+  <audio data-key="49" src="sounds/Megan (2).wav"></audio>
+  <audio data-key="50" src="sounds/Glorilla (2).wav"></audio>
+
+<script>
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('playing');
+  }
+
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    if (!audio) return;
+
+    key.classList.add('playing');
+    audio.currentTime = 0;
+    audio.play();
+  }
+
+  const keys = Array.from(document.querySelectorAll('.key'));
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  window.addEventListener('keydown', playSound);
+</script>
+
+
+</body>
+</html>
